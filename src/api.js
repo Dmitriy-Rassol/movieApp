@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import config from "@/shared/config";
 
@@ -16,3 +17,4 @@ export const HTTP = axios.create({
 export const FIREBASE = axios.create({
   baseURL: config.firebaseDB,
 });
+
