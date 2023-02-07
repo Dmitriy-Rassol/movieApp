@@ -1,28 +1,32 @@
 <template >
-  <router-link class="actor-card" :to="{
+  <router-link
+    class="flex flex-col actor-hover "
+    :to="{
       name: 'ActorView',
       params: { id: actor.id },
-    }">
-    <div class="actor-card__block--img">
-      <img
-        class="actor-card__img"
-        :src="
-          actor.profile_path
-            ? `${IMAGE_URL.w300}${actor.profile_path}`
-            : `/public/img/no-pic.png`
-        "
-        :alt="actor.original_name"
-      />
-    </div>
-    <div class="actor-card__info">
-      <p class="actor-card__title">{{ actor.original_name }}</p>
-      <p class="actor-card__character">{{ actor.character }}</p>
+    }"
+  >
+   <div class=" overflow-hidden rounded-lg " >
+    <img
+      class="transition duration-200 ease-in-out "
+      :src="
+        actor.profile_path
+          ? `${IMAGE_URL.w300}${actor.profile_path}`
+          : `../../src/assets/img/no-pic.png`
+      "
+      :alt="actor.original_name"
+    />
+   
+   </div>
+    <div class="pt-2 text-lg overflow-hidden mt-auto">
+      <p>{{ actor.original_name }}</p>
+      <p class="text-[#bdbdbd] truncate text-sm">{{ actor.character }}</p>
     </div>
   </router-link>
 </template>
   
   <script setup>
-import { IMAGE_URL } from "../constant";
+import { IMAGE_URL } from "@/shared/constant";
 const props = defineProps({
   actor: {
     type: Object,
@@ -33,24 +37,4 @@ const props = defineProps({
 </script>
   
   <style lang="scss" scoped>
-.actor-card {
-  &__img {
-    width: 100%;
-    border-radius: 10px;
-  }
-  &__info {
-    width: 100%;
-    padding: 10px 5px;
-    font-size: 18px;
-  }
-  &__block--img {
-    width: 100%;
-  }
-  &__character {
-    color: rgb(143, 143, 143);
-    font-weight: 600;
-  }
-}
-
-
 </style>

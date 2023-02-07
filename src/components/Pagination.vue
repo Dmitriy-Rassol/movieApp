@@ -1,22 +1,42 @@
 <template>
-  <div class="pagination">
-    <button
-      class="pagination__btn"
-      :disabled = "page === 1"
-      type="button"
-      @click="emit('prev')"
-    >
-      Prev
-    </button>
-    <span class="pagination__count"> {{ page }} of {{ totalPage }}</span>
+  <div class="flex items-center justify-end py-2">
+    <button class="
+        px-2
+        py-1
+        md:px-1
+        md:py-0
+        disabled:opacity-40
+         hover:disabled:bg-transparent
+        [text-shadow:_1px_1px_4px_rgba(0,0,0,0.69)]
+         border-none
+         text-lg
+         md:text-base
+         font-medium
+         rounded-lg
+         hover:bg-orange-700
+          transition duration-200 ease-out
 
-    <button
-      class="pagination__btn"
-      :disabled="page === totalPage"
-      type="button"
-      @click="emit('next')"
-    >
-      Next
+      " :disabled="page === 1" type="button" @click="emit('prev')">
+      {{ $t("pagination.prev") }}
+    </button>
+    <span class=" p-2 md:text-base"> {{ page }} {{$t("pagination.of")}} {{ totalPage }}</span>
+
+    <button class="
+      px-2
+        py-1
+        md:px-1
+        md:py-0
+        disabled:opacity-40
+        [text-shadow:_1px_1px_4px_rgba(0,0,0,0.69)]
+         border-none
+         text-lg
+         md:text-base
+         font-medium
+         rounded-lg
+         hover:bg-orange-700
+          transition duration-200 ease-out
+      " :disabled="page === totalPage || totalPage === 0" type="button" @click="emit('next')">
+      {{ $t("pagination.next") }}
     </button>
   </div>
 </template>
@@ -30,32 +50,5 @@ const emit = defineEmits(["prev", "next"]);
 </script>
 
 <style lang="scss" scoped>
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 10px 0;
-  &__btn {
-    padding: 2px 15px;
-    background-color: var(--bg-card);
-    color: var(--color);
-    text-shadow: var(--text-shadow);
-    border: none;
-    font-size: 20px;
-    font-family: var(--poppins-font);
-    font-weight: 500;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-    &:hover:not(:disabled) {
-      color: rgb(150, 150, 150);
-    }
-    &:disabled {
-        opacity: 0.4;
-    }
-  }
-  &__count {
-    padding: 10px;
-  }
-}
+
 </style>

@@ -1,84 +1,43 @@
 <template>
-  <form class="form-search" @submit.prevent="emit('submit')">
+  <form class="relative flex w-full input-before" @submit.prevent="emit('submit')">
+    <img class="absolute top-3 left-3 w-6 xs:top-2" src="@/assets/svg/search.svg" alt="">
     <input
-      class="input-search"
-      placeholder="search"
-      type="search"
+      class="
+        outline-none
+        pl-12
+        placeholder-gray
+        xs:placeholder:text-lg
+        w-full
+        py-2
+        xs:py-1
+         rounded-lg
+        text-gray
+
+      "
+      :placeholder="$t('home.search.placeholder')"
+      type="text"
       v-model="searchQuery"
     />
-    <input class="input-btn" type="submit" value="Search" />
   </form>
 </template>
   
 <script setup>
-import { computed, watch } from "vue";
-import { useMovieStore } from "../stores/MovieStore";
+import { computed } from "vue";
+import { useFilterStore } from "@/stores/FilterStore";
 
-const movieStore = useMovieStore();
+const filterStore = useFilterStore();
 const emit = defineEmits(["submit"]);
 
 const searchQuery = computed({
   get() {
-    return movieStore.searchQuery;
+    return filterStore.searchQuery;
   },
   set(newValue) {
-    movieStore.setSearchQuery(newValue);
+    filterStore.setSearchQuery(newValue);
   },
 });
-
-watch(
-  () => searchQuery.value,
-  (value) => {
-    if (!value) {
-      movieStore.fetchCollection();
-    }
-  }
-);
 </script>
   
   
 <style lang="scss" scoped>
-.form-search {
-  width: 40%;
-  display: flex;
-}
-
-.input {
-  &-search {
-    width: 100%;
-    padding: 10px 12px 10px 30px;
-    outline: none;
-    border-radius: 15px;
-    font-size: 20px;
-    font-family: var(--poppins-font);
-    background: transparent;
-    border: 1px solid #323b54;
-    color: var(--color);
-    margin-right: 20px;
-    &:focus {
-      &::placeholder {
-        opacity: 0;
-      }
-    }
-    &::placeholder {
-      color: rgba(142, 149, 169);
-      text-transform: capitalize;
-      transition: 0.15s;
-      font-size: 18px;
-      opacity: 1;
-    }
-  }
-  &-btn {
-    border-radius: 15px;
-    padding: 10px 30px;
-    font-size: 20px;
-    color: var(--color);
-    background: var(--btn);
-    font-family: var(--poppins-font);
-    border: none;
-    outline: none;
-    text-shadow: var(--text-shadow);
-    cursor: pointer;
-  }
-}
 </style>
