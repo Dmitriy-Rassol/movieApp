@@ -1,0 +1,116 @@
+{
+  "lang": "ru",
+  "auth": {
+    "login": "Авторизация",
+    "registr": "Регистрация",
+    "placeholders": {
+      "name": "Имя пользователя",
+      "email": "email",
+      "password": "Пароль"
+    },
+    "buttons": {
+      "signin": "Вход",
+      "signup": "Регистрация",
+      "signout": "Выход",
+      "save": "Сохранить"
+    },
+    "titleLogin": "Войдите в свой профиль",
+    "titleReg": "Создайте новый профиль"
+  },
+  "nav": {
+    "home": "Главная",
+    "user": "Профиль",
+    "bookmark": "Закладки",
+    "watched": "Посмотрел"
+  },
+  "listEmpty": "Список пуст",
+  "bookmark": "Буду смотреть",
+  "watched": "Посмотренно",
+  "home": {
+    "title": "Поиск фильмов и сериалов",
+    "search": {
+      "value": "поиск",
+      "placeholder": "Поиск фильмов и тв шоу"
+    },
+    "tabs": {
+      "all": "Все",
+      "movies": "Фильмы",
+      "tv": "ТВ Шоу"
+    },
+    "popular": "Популярное"
+  },
+  "movie": {
+    "movieType": "Фильмы",
+    "tvType": "ТВ Шоу",
+    "actors": "Актёры"
+  },
+  "type": {
+    "movie": "Фильм",
+    "tv": "ТВ Шоу"
+  },
+  "actor": {
+    "Age": "Возраст",
+    "Birthday": "Дата рождения",
+    "PlaceOfBirth": " Место рождения",
+    "otherFilms": "Другие фильмы с"
+  },
+  "similar": {
+    "movies": "Похожие фильмы",
+    "tv": "Похожие шоу"
+  },
+  "read": {
+    "more": "Читать ещё",
+    "hide": "свернуть"
+  },
+  "pagination": {
+    "prev": "Назад",
+    "next": "Вперед",
+    "of": "из"
+  },
+  "notFound": { 
+    "page": "СТРАНИЦА НЕ НАЙДЕНА", 
+    "back": "ВЕРНУТЬСЯ?" 
+  },
+  "breadcrumbs": {
+    "back": "Назад",
+    "home": "Главная"
+  },
+  "trailer": "Трейлер",
+  "user": {
+    "name": "Имя"
+  },
+  "characteristics": {
+    "type": "Тип",
+    "runtime": "Время",
+    "status": "Статус",
+    "releaseDate": "Дата выхода",
+    "episodes": "Эпизодов",
+    "firstDate": "Первая серия",
+    "lastDate": "Посленяя серия",
+    "seasons": "Сезонов",
+    "production": "В производсте",
+    "genres": "Жанры",
+    "min": "мин",
+    "yes": "Да",
+    "no": "Нет",
+    "released": {
+      "yes": "Выпущен",
+      "no": "Пост продакшн"
+    }
+  },
+  "error": {
+    "shortPass": "Пароль менее 6 символов",
+    "enterPass": "Введите пароль",
+    "enterName": "Введите имя",
+    "enterEmail": "Введите email",
+    "existEmail": "Такой пользователь существует",
+    "incorrectPass": "Неверный пароль",
+    "invalidEmail": "Неверный email",
+    "incorrect": "Неверный email или пароль",
+    "userPhoto": "Фото не выбрано",
+    "server": "Сервер недоступен"
+  },
+  "msg": {
+    "done": "Изменения внесены"
+  }
+}

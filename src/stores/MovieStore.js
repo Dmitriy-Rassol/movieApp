@@ -1,75 +1,125 @@
 import { defineStore } from "pinia";
-import { baseURL, KEY } from "../api";
-import { MEDIA_TYPES } from "../constant";
+import { HTTP, FIREBASE } from "@/api";
+import config from "@/shared/config";
+import { useFilterStore } from "./FilterStore";
+import { useUserStore } from "./UserStore";
 
 export const useMovieStore = defineStore("movieStore", {
   state: () => ({
     movies: [],
-    activeTab: 0,
-    type: "all",
-    page: 1,
-    totalPage: 0,
-    searchQuery: "",
+    moviesFilter: [],
+    filterStore: useFilterStore(),
+    userStore: useUserStore(),
   }),
   actions: {
     async fetchCollection() {
-      const searchType = this.type === "all" ? "multi" : this.type;
-      const url = this.searchQuery
-        ? `/search/${searchType}${KEY}&query=${this.searchQuery}&page=${this.page}`
-        : `/trending/${this.type}/day${KEY}&page=${this.page}`;
-      const res = await fetch(`${baseURL}${url}`);
-      const data = await res.json();
-      this.totalPage = data.total_pages;
-      console.log(typeof this.page);
-      this.movies = data.results.map((el) =>
+      this.movies = "";
+      this.filterStore.notFound = true;
+      const searchType =
+        this.filterStore.currentCategory === "all"
+          ? "multi"
+          : this.filterStore.currentCategory;
+
+      const url = this.filterStore.searchQuery
+        ? `/search/${searchType}${config.KEY}&query=${this.filterStore.searchQuery}`
+        : `/trending/${this.filterStore.currentCategory}/day${config.KEY}`;
+
+      const page = `&page=${this.filterStore.page}`;
+      try {
+        const res = await HTTP.get(`${url}${page}`, {
+          params: { language: config.langDefault },
+        });
+        const data = res.data;
+        this.filterStore.totalPage = data.total_pages;
+        this.movies = data.results.map((el) =>
           Object.assign(
             el,
-            this.type !== "multi" && this.type !== "all"
-              ? { media_type: this.type }
+            this.filterStore.currentCategory !== "multi" &&
+              this.filterStore.currentCategory !== "all"
+              ? { media_type: this.filterStore.currentCategory }
               : ""
           )
         );
-        console.log(this.movies);
-      return this.movies;
+        this.getFavoritesMovies();
+        this.filterStore.notFound = false;
+      } catch (error) {
+        if (error) {
+          this.userStore.errMsg = "error.server";
+        }
+      }
     },
 
     async getDetails(type, id) {
-      const res = await fetch(`${baseURL}/${type}/${id}${KEY}&append_to_response=videos`);
-      const data = await res.json();
-      return data;
+      try {
+        const res = await HTTP.get(`/${type}/${id}${config.KEY}`, {
+          params: { language: config.langDefault },
+        });
+        const data = await res.data;
+        return data;
+      } catch (error) {
+        if (error) {
+          this.userStore.errMsg = "error.server";
+        }
+      }
     },
 
     async getContent(type, id, collection) {
-      const res = await fetch(`${baseURL}/${type}/${id}/${collection}${KEY}`);
-      const data = await res.json();
-      return data.results || data.cast;
+      try {
+        const res = await HTTP.get(
+          `/${type}/${id}/${collection}${config.KEY}`,
+          { params: { language: config.langDefault } }
+        );
+        const data = await res.data;
+        this.movies = data.results;
+        this.getFavoritesMovies();
+        return this.movies || data.cast;
+      } catch (error) {
+        if (error) {
+          this.userStore.errMsg = "error.server";
+        }
+      }
     },
 
-    async getActor( id, credits) {
-      const res = await fetch(`${baseURL}/person/${id}${credits}${KEY}`);
-      const data = await res.json();
-      return data;
+    async getActor(id, credits) {
+      try {
+        const res = await HTTP.get(`/person/${id}${credits}${config.KEY}`, {
+          params: { language: config.langDefault },
+        });
+        const data = await res.data;
+        return data;
+      } catch (error) {
+        if (error) {
+          this.userStore.errMsg = "error.server";
+        }
+      }
     },
 
-    setActiveTab(id, type) {
-      this.activeTab = id;
-      this.type = type;
-      this.fetchCollection();
-    },
+    async getFavoritesMovies() {
+      if (!this.userStore.userData) return;
+      this.filterStore.notFound = true;
+      const firebaseDB = await FIREBASE.get(
+        `/users/${this.userStore.userData.uid}/movies/favorites.json`
+      );
+      const favoritesMovie = await firebaseDB.data;
+      this.moviesFilter =
+        (await favoritesMovie) !== null ? Object.values(favoritesMovie) : [];
 
-    setSearchQuery(search) {
-      this.searchQuery = search;
-    },
+      if (this.movies) {
+        this.movies.map((el) => {
+          ({
+            ...el,
+            watched: false,
+            bookmark: false,
+          });
 
-    increasePage() {
-      this.page += 1
-    },
-    decreasePage() {
-      this.page -= 1
-    },
-
-    setPage(page) {
-      this.page = page
+          this.moviesFilter.map((el1) => {
+            el.id === el1.id
+              ? ((el.watched = el1.watched), (el.bookmark = el1.bookmark))
+              : (el.watched, el.bookmark);
+          });
+        });
+      }
+      this.filterStore.notFound = false;
     },
   },
 });

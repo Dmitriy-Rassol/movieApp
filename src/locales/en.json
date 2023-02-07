@@ -1,0 +1,116 @@
+{
+  "lang": "en",
+  "auth": {
+    "login": "Login",
+    "registr": "Registr",
+    "placeholders": {
+      "name": "Name",
+      "username": "Username",
+      "password": "Password"
+    },
+    "buttons": {
+      "signin": "Sign In",
+      "signup": "Sign Up",
+      "signout": "Sign Out",
+      "save": "Save"
+    },
+    "titleLogin": "Login to Your Account",
+    "titleReg": "Create an Account"
+  },
+  "nav": {
+    "home": "Home",
+    "user": "User",
+    "bookmark": "Bookmark",
+    "watched": "Watched"
+  },
+  "listEmpty": "List is empty",
+  "bookmark": "Bookmark",
+  "watched": "Watched",
+  "home": {
+    "title": "Search and Explore Movies or TV Series",
+    "search": {
+      "value": "search",
+      "placeholder": "Search movies & shows"
+    },
+    "tabs": {
+      "all": "All",
+      "movies": "Movies",
+      "tv": "TVSeries"
+    },
+    "popular": "Popular now"
+  },
+  "movie": {
+    "movieType": "Movies",
+    "tvType": "TV",
+    "actors": "Actors"
+  },
+  "actor": {
+    "Age": "Age",
+    "Birthday": "Birthday",
+    "PlaceOfBirth": "Place Of Birth",
+    "otherFilms": "Other films with"
+  },
+  "type": {
+    "movie": "movie",
+    "tv": "tv"
+  },
+  "similar": {
+    "movies": "Similar movies",
+    "tv": "Similar tv"
+  },
+  "read": {
+    "more": "Read more",
+    "hide": "Hide"
+  },
+  "pagination": {
+    "prev": "prev",
+    "next": "next",
+    "of": "of"
+  },
+  "notFound": {
+    "page": "PAGE NOT FOUND",
+    "back": "BACK TO HOME?"
+  },
+  "breadcrumbs": {
+    "back": "Back",
+    "home": "Home"
+  },
+  "trailer": "Trailer",
+  "user": {
+    "name": "Name"
+  },
+  "characteristics": {
+    "type": "Type",
+    "runtime": "Runtime",
+    "status": "Status",
+    "releaseDate": "Release Date",
+    "episodes": "Episodes",
+    "firstDate": "First Air Date",
+    "lastDate": "Last Air Date",
+    "seasons": "Seasons",
+    "production": "In Production",
+    "genres": "Genres",
+    "min": "min",
+    "yes": "yes",
+    "no": "no",
+    "released": {
+      "yes": "Released",
+      "no": "Post Production"
+    }
+  },
+  "error": {
+    "shortPass": "Short password, please enter more than 6 characters",
+    "enterPass": "Please enter password",
+    "enterName": "Please enter name",
+    "enterEmail": "Please enter email",
+    "existEmail": "User with this email address already exists",
+    "incorrectPass": "Incorrect password",
+    "invalidEmail":"Invalid email",
+    "incorrect": "Email or password was incorrect",
+    "userPhoto": "Photo not selected",
+    "server": "Server is not available",
+  },
+  "msg": {
+    "done": "Done"
+  }
+}
