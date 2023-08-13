@@ -47,7 +47,7 @@ const firebaseConfig = {
 config.js
 The movie database api
 ```
-  KEY : "?api_key=",  
+  KEY : "?api_key=",  // themoviedb.org your api key
   baseURL :"https://api.themoviedb.org/3",
   firebaseDB: "",  // FIREBASE realtime database url
 ```
