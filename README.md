@@ -1,3 +1,5 @@
+# Для корректной работы и подключения к базе требуется VPN
+
 # [MovieDB-vue3](https://movie-9107a.web.app/)
 
 # Vue 3 + Vite
