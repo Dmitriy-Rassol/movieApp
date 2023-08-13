@@ -1,4 +1,4 @@
-# [MovieDB-vue3](https://moviedb-vue3-7dad0.web.app/)
+# [MovieDB-vue3](https://moviedb-5ef45.web.app/)
 
 # Vue 3 + Vite
 
